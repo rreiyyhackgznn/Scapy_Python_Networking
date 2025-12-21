@@ -26,8 +26,8 @@ These scripts are intended to improve practical understanding of:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [YOUR REPO URL]
-    cd [REPO NAME]
+    git clone 
+    cd
     ```
 2.  **Install dependencies:** (Installs the Scapy library)
     ```bash
