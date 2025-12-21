@@ -24,12 +24,7 @@ These scripts are intended to improve practical understanding of:
 
 ##Setup
 
-1.  **Clone the repository:**
-    ```bash
-    git clone 
-    cd
-    ```
-2.  **Install dependencies:** (Installs the Scapy library)
+ **Install dependencies:** (Installs the Scapy library)
     ```bash
     pip install scapy
     ```
