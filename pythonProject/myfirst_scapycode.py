@@ -10,4 +10,26 @@ tp = IP()  # IP paketi nesnesi oluştur
 tp.src = '192.168.X.X'   # Kaynak IP adresi
 tp.dst = '192.168.X.X'  # Hedef IP adresi
 
+
 send(tp / temp)  # IP ve ICMP katmanlarını birleştir ve gönder
+
+# scapy_traffic_capture.py
+from scapy.all import *
+import pymongo  # veya sqlite
+
+def packet_handler(pkt):
+    if IP in pkt:
+        flow_record = {
+            'timestamp': time.time(),
+            'src_ip': pkt[IP].src,
+            'dst_ip': pkt[IP].dst,
+            'src_port': pkt[TCP].sport if TCP in pkt else None,
+            'dst_port': pkt[TCP].dport if TCP in pkt else None,
+            'protocol': pkt[IP].proto,
+            'size': len(pkt)
+        }
+        # Veritabanına kaydet
+        db.flows.insert_one(flow_record)
+
+# Trafiği yakala
+sniff(iface="eth0", prn=packet_handler, store=0)
